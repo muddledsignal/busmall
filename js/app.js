@@ -17,76 +17,115 @@ var allProducts = [];
 var imgElement1 = document.getElementById('product1');
 var imgElement2 = document.getElementById('product2');
 var imgElement3 = document.getElementById('product3');
+var sectionElement = document.getElementById('click-tracker-container');
+var resultUlist = document.getElementById('vote-result-container');
 
 var product1Index = 0;
 var product2Index = 0;
 var product3Index = 0;
 
+var totalClicks = 0;
+
 
 // Constructor function
-function Product (name, src) {
-    this.name = name;
+function Product(src, name) {
     this.src = src;
+    this.name = name;
 
     this.timesClicked = 0;
 
     allProducts.push(this);
 };
 
-var listElement = document.getElementById('allProductsList');
-var liElement = document.createElement('li');
-var pElement = document.createElement('p');
+// Event Listeners
+sectionElement.addEventListener('click', sectionCallBack);
 
-imgElement1.addEventListener('click', function() {
-    allProducts[product1Index].timesClicked++;
-    replaceProducts();
-});
+function sectionCallBack(event) {
+    checkTotalClicks();
+    console.log(event);
 
-imgElement2.addEventListener('click', function() {
-    allProducts[product2Index].timesClicked++;
-    replaceProducts();
-});
+    if (event.target.id) {
+        totalClicks++;
+        allProducts[event.target.id].timesClicked++;
 
-imgElement3.addEventListener('click', function() {
-    allProducts[product3Index].timesClicked++;
-    replaceProducts();
-})
+        replaceProducts();
+    } else {
+        alert('Please click on an image');
+    }
+};
 
+// Helper functions
 function replaceProducts() {
-    product1Index = Math.floor(Math.random() * allProducts.length);
+
+    var cantBeThis = [product1Index, product2Index, product3Index];
+
+    do {
+        product1Index = Math.floor(Math.random() * allProducts.length);
+    } while (cantBeThis.includes(product1Index));
+    cantBeThis.push(product1Index);
+
+    do {
+        product2Index = Math.floor(Math.random() * allProducts.length);
+    } while (cantBeThis.includes(product2Index));
+    cantBeThis.push(product2Index);
+
+    do {
+        product3Index = Math.floor(Math.random() * allProducts.length);
+    } while (cantBeThis.includes(product3Index));
+    cantBeThis.push(product3Index);
+
     imgElement1.src = allProducts[product1Index].src;
-    
-    product2Index = Math.floor(Math.random() * allProducts.length);
+    imgElement1.id = product1Index;
+
     imgElement2.src = allProducts[product2Index].src;
+    imgElement2.id = product2Index;
 
-    product3Index = Math.floor(Math.random() * allProducts.length);
     imgElement3.src = allProducts[product3Index].src;
-}
+    imgElement3.id = product3Index;
+};
+// ======================================================
 
+function renderResults() {
+    for (var i in allProducts) {
+        var liElement = document.createElement('li');
+        liElement.textContent = allProducts[i].name + ' clicked: ' + allProducts[i].timesClicked + ' times';
+        resultUlist.append(liElement);
+    }
+};
 
+function checkTotalClicks() {
+    if (totalClicks === 24) {
+        renderResults();
 
-var r2d2bag = new Product('R2D2 Bag', '../img/bag.jpg');
-var bananaSlicer = new Product('Banana Slicer', '../img/banana.jpg');
-var ipadStand = new Product('Bathroom iPad Stand', '../img/bathroom.jpg');
-var rainBoots = new Product('Rain Boots', '../img/boots.jpg');
-var toasterOven = new Product('All in One Breakfast Center', '../img/breakfast.jpg');
-var meatballGum = new Product('Meatball Bubblegum','../img/bubblegum.jpg');
-var awkwardChair = new Product('Awkward Uncomfortable Chair','../img/.jpg');
-var cthulhu = new Product('Cthulhu Action Figure','../img/cthulhu.jpg');
-var duckDogMuzzle = new Product('Duck Dog Muzzle','../img/dog-duck.jpg');
-var dragonMeat = new Product('Dragon Meat Can','../img/dragon.jpg');
-var penUtensils = new Product('Pen Cap Eating Utensils','../img/pen.jpg');
-var petSweeperFeet = new Product('Pet Sweep Debris Removal System','../img/pet-sweep.jpg');
-var pizzaScissors = new Product('Pizza Server Scissors','../img/scissors.jpg');
-var sharkSleepingBag = new Product('Shark Sleeping Bag','../img/shark.jpg');
-var babySweeper = new Product('Baby Sweeper Onesie','../img/sweep.jpg');
-var tauntaunSleepingBag = new Product('Tauntaun Sleeping Bag','../img/tauntaun.jpg');
-var unicornMeat = new Product('Unicorn Meat','../img/unicorn.jpg');
-var tentacleUsb = new Product('Tentacle USB','../img/usb.gif');
-var wateringCan = new Product('Useful Watering Can','../img/water-can.jpg');
-var wineGlass = new Product('Wine Glass','../img/wine-glass.jpg');
+        sectionElement.removeEventListener('click', sectionCallBack);
+    }
+};
 
 // Math to Calculate Random Number - via mdn
 function getRandom() {
     return Math.random();
 }
+
+var r2d2bag = new Product('../img/bag.jpg', 'R2D2 Bag');
+var bananaSlicer = new Product('../img/banana.jpg', 'Banana Slicer');
+var ipadStand = new Product('../img/bathroom.jpg', 'Bathroom iPad Stand');
+var rainBoots = new Product('../img/boots.jpg', 'Rain Boots');
+var toasterOven = new Product('../img/breakfast.jpg', 'All in One Breakfast Center');
+var meatballGum = new Product('../img/bubblegum.jpg', 'Meatball Bubblegum');
+var awkwardChair = new Product('../img/chair.jpg', 'Awkward Uncomfortable Chair');
+var cthulhu = new Product('../img/cthulhu.jpg', 'Cthulhu Action Figure');
+var duckDogMuzzle = new Product('../img/dog-duck.jpg', 'Duck Dog Muzzle');
+var dragonMeat = new Product('../img/dragon.jpg', 'Dragon Meat Can');
+var penUtensils = new Product('../img/pen.jpg', 'Pen Cap Eating Utensils');
+var petSweeperFeet = new Product('../img/pet-sweep.jpg', 'Pet Sweep Debris Removal System');
+var pizzaScissors = new Product('../img/scissors.jpg', 'Pizza Server Scissors');
+var sharkSleepingBag = new Product('../img/shark.jpg', 'Shark Sleeping Bag');
+var babySweeper = new Product('../img/sweep.png', 'Baby Sweeper Onesie');
+var tauntaunSleepingBag = new Product('../img/tauntaun.jpg', 'Tauntaun Sleeping Bag');
+var unicornMeat = new Product('../img/unicorn.jpg', 'Unicorn Meat');
+var tentacleUsb = new Product('../img/usb.gif', 'Tentacle USB');
+var wateringCan = new Product('../img/water-can.jpg', 'Useful Watering Can');
+var wineGlass = new Product('../img/wine-glass.jpg', 'Wine Glass');
+
+
+replaceProducts();
