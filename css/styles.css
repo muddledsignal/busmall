@@ -1,3 +1,71 @@
-main img {
-    width: 350px;
+
+header {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    border: solid purple 2px;
+    margin: 0px auto;
+}
+
+header img {
+    float: left;
+}
+
+header h1 {
+    float: left;
+    font-size: 30px;
+    margin: 20px;
+    border: dotted orange 3px;
+}
+
+nav {
+    float: right;
+    margin-top: 40px;
+    border: solid yellow 3px;
+    width: 400px;
+}
+
+nav li {
+    display: inline-block;
+    float: left;
+    width: 60px;
+    margin-left: 20px;
+    border: blue dotted 2px;
+}
+
+aside {
+    float: left;
+    width: 300px;
+    margin: 20px;
+    border: dotted green 3px;
+}
+
+body {
+    margin: 0px auto;
+    border: dashed red 3px;
+}
+
+#click-tracker-container {
+    border: solid red 1px;
+}
+
+button {
+    float: left;
+    width: 300px;
+    margin: 30px auto;
+    margin-left: 500px;
+    border: solid yellow 4px;
+}
+
+#allProductsList li {
+    display: inline-block;
+}
+
+#allProductsList img {
+    width: 300px;
+}
+
+#chart-container {
+    float: left;
+    border: dotted blue 2px;
 }
