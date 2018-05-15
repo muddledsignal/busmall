@@ -14,9 +14,9 @@ Change Text
 // Global Variables
 var allProducts = [];
 
-// var imgElement1 = document.getElementById('product1');
-// var imgElement2 = document.getElementById('product2');
-// var imgElement3 = document.getElementById('product3');
+var imgElement1 = document.getElementById('product1');
+var imgElement2 = document.getElementById('product2');
+var imgElement3 = document.getElementById('product3');
 
 var product1Index = 0;
 var product2Index = 0;
@@ -32,44 +32,36 @@ function Product (name, src) {
 
     allProducts.push(this);
 };
-// ====================Old Table=============================
-// Product.prototype.render = function() {
-//     var tableElement = document.getElementById('allProductsTable');
-//     var tableRow = document.createElement('tr');
-//     var tableHeader = document.createElement('th');
-//     var tableData = document.createElement('td');
-
-//     tableHeader.textContent = this.url;
-//     tableRow.append(tableHeader);
-
-//     tableData.textContent = this.name;
-//     tableRow.append(tableData);
-
-//     tableElement.append(tableRow);
-// }==========================================================
-
-// Product.prototype.render = function() {
-//     var listElement = document.getElementById('allProductsList');
-//     var ulElement = document.createElement('ul');
-//     var liElement = document.createElement('li');
-
-//     ulElement.textContent = '';
-
-
-//     liElement.textContent = this.url;
-
-// }
-
-// function loadNewProducts() {
-//     product1Index = Math.floor(Math.random() * allProducts.length);
-// }
 
 var listElement = document.getElementById('allProductsList');
-// var ulElement = document.createElement('ul');
 var liElement = document.createElement('li');
 var pElement = document.createElement('p');
 
+imgElement1.addEventListener('click', function() {
+    allProducts[product1Index].timesClicked++;
+    replaceProducts();
+});
 
+imgElement2.addEventListener('click', function() {
+    allProducts[product2Index].timesClicked++;
+    replaceProducts();
+});
+
+imgElement3.addEventListener('click', function() {
+    allProducts[product3Index].timesClicked++;
+    replaceProducts();
+})
+
+function replaceProducts() {
+    product1Index = Math.floor(Math.random() * allProducts.length);
+    imgElement1.src = allProducts[product1Index].src;
+    
+    product2Index = Math.floor(Math.random() * allProducts.length);
+    imgElement2.src = allProducts[product2Index].src;
+
+    product3Index = Math.floor(Math.random() * allProducts.length);
+    imgElement3.src = allProducts[product3Index].src;
+}
 
 
 
@@ -95,6 +87,6 @@ var wateringCan = new Product('Useful Watering Can','../img/water-can.jpg');
 var wineGlass = new Product('Wine Glass','../img/wine-glass.jpg');
 
 // Math to Calculate Random Number - via mdn
-// function getRandom() {
-//     return Math.random();
-// }
+function getRandom() {
+    return Math.random();
+}
