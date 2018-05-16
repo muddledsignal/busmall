@@ -1,15 +1,5 @@
 'use strict';
 
-/*
-Array of picture objects
-Picture constructor
-Event listener
-Event handler
-Variable to hold clicks
-Picture clicks ++
-Change Source
-Change Text
-*/
 
 // Global Variables
 var allProducts = [];
@@ -55,14 +45,6 @@ function updateChartArrays() {
   }
 }
 
-function tallyVotes(thisProduct) {
-  for (var i = 0; i < allProducts.length; i++) {
-    if (thisProduct === allProducts[i].src) {
-      allProducts[i].votes++;
-      updateChartArrays();
-    }
-  }
-}
 
 var data = {
   labels: productNamesArray,
@@ -146,11 +128,11 @@ sectionElement.addEventListener('click', sectionCallBack);
 function sectionCallBack(event) {
   checkTotalClicks();
   // console.log(event);
-
+  
   if (event.target.id) {
     totalClicks++;
     allProducts[event.target.id].timesClicked++;
-
+    
     replaceProducts();
   } else {
     alert('Please click on an image');
@@ -167,30 +149,30 @@ if (chartDrawn) {
 
 // Helper functions
 function replaceProducts() {
-
+  
   var cantBeThis = [product1Index, product2Index, product3Index];
-
+  
   do {
     product1Index = Math.floor(Math.random() * allProducts.length);
   } while (cantBeThis.includes(product1Index));
   cantBeThis.push(product1Index);
-
+  
   do {
     product2Index = Math.floor(Math.random() * allProducts.length);
   } while (cantBeThis.includes(product2Index));
   cantBeThis.push(product2Index);
-
+  
   do {
     product3Index = Math.floor(Math.random() * allProducts.length);
   } while (cantBeThis.includes(product3Index));
   cantBeThis.push(product3Index);
-
+  
   imgElement1.src = allProducts[product1Index].src;
   imgElement1.id = product1Index;
-
+  
   imgElement2.src = allProducts[product2Index].src;
   imgElement2.id = product2Index;
-
+  
   imgElement3.src = allProducts[product3Index].src;
   imgElement3.id = product3Index;
 }
@@ -203,6 +185,14 @@ function renderResults() {
     resultUlist.append(liElement);
   }
 }
+
+function tallyVotes(thisProduct) {
+  for (var i = 0; i < allProducts.length; i++) {
+    votes[i] = allProducts[i].timesClicked;
+  }
+}
+
+
 
 function checkTotalClicks() {
   if (totalClicks === 6) {
