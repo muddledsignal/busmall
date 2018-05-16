@@ -26,7 +26,7 @@ var product3Index = 0;
 
 var totalClicks = 0;
 
-// ========================================
+// ====================Chart Variables====================
 
 var votes = [];
 var productNames = [];
@@ -113,8 +113,8 @@ var data = {
 };
 
 function drawChart() {
-  var ctx = document.getElementById('productVoteChart').msGetInputContext('2d');
-  voteChart = new CharacterData(ctx, {
+  var ctx = document.getElementById('productVoteChart').getContext('2d');
+  var voteChart = new Chart(ctx, {
     type: 'bar',
     data: data,
     options: {
