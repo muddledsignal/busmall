@@ -29,15 +29,17 @@ var totalClicks = 0;
 // ====================Chart Variables====================
 
 var votes = [];
-var productNames = [];
-var slateColorsArray = ['#97ffff', '#8deeee', '#79cdcd', '#00ced1'];
-var purpleColorsArray = ['#ffe1ff','#eed2ee','#d8bfd8','#cdb5cd'];
+var productNamesArray = [];
+var productNamesArray = ['r2d2', 'bananaSlicer', 'ipadStand', 'rainBoots', 'breakfastCenter', 'bubblegum', 'awkwardChair', 'cthulhu', 'dogMuzzle', 'dragonMeat', 'penCap', 'petSweep', 'pizzaScissors', 'sharkSleepingBag', 'babySweeper', 'tauntaunSleepingBag', 'unicornMeat', 'tentacle', 'wateringCan', 'wineGlass'];
+// var slateColorsArray = ['#97ffff', '#8deeee', '#79cdcd', '#00ced1'];
+// var purpleColorsArray = ['#ffe1ff','#eed2ee','#d8bfd8','#cdb5cd'];
 var chartDrawn = false;
 
 // Constructor function
-function Product(src, name) {
+function Product(src, name, productDescription) {
   this.src = src;
   this.name = name;
+  this.productDescription = productDescription;
 
   this.timesClicked = 0;
 
@@ -46,13 +48,14 @@ function Product(src, name) {
 
 function updateChartArrays() {
   for (var i = 0; i < allProducts.length; i++) {
-    productNames = allProducts[i].name;
+    productNamesArray[i] = allProducts[i].name;
+    console.log(productNamesArray);
     votes[i] = allProducts[i].timesClicked;
-    backgroundColors = slateColorsArray[i];
+    // backgroundColors = slateColorsArray[i];
   }
 }
 
-function tallyVote(thisProduct) {
+function tallyVotes(thisProduct) {
   for (var i = 0; i < allProducts.length; i++) {
     if (thisProduct === allProducts[i].src) {
       allProducts[i].votes++;
@@ -62,7 +65,7 @@ function tallyVote(thisProduct) {
 }
 
 var data = {
-  labels: productNames,
+  labels: productNamesArray,
   datasets: [{
     data: votes,
     backgroundColor: [
@@ -142,7 +145,7 @@ sectionElement.addEventListener('click', sectionCallBack);
 
 function sectionCallBack(event) {
   checkTotalClicks();
-  console.log(event);
+  // console.log(event);
 
   if (event.target.id) {
     totalClicks++;
@@ -159,7 +162,7 @@ function sectionCallBack(event) {
 
 
 if (chartDrawn) {
-    productVoteChart.update();
+  productVoteChart.update();
 }
 
 // Helper functions
@@ -202,7 +205,8 @@ function renderResults() {
 }
 
 function checkTotalClicks() {
-  if (totalClicks === 24) {
+  if (totalClicks === 6) {
+    tallyVotes();
     renderResults();
     drawChart();
 
@@ -215,25 +219,25 @@ function getRandom() {
   return Math.random();
 }
 
-new Product('../img/bag.jpg', 'R2D2 Bag');
-new Product('../img/banana.jpg', 'Banana Slicer');
-new Product('../img/bathroom.jpg', 'Bathroom iPad Stand');
-new Product('../img/boots.jpg', 'Rain Boots');
-new Product('../img/breakfast.jpg', 'All in One Breakfast Center');
-new Product('../img/bubblegum.jpg', 'Meatball Bubblegum');
-new Product('../img/chair.jpg', 'Awkward Uncomfortable Chair');
-new Product('../img/cthulhu.jpg', 'Cthulhu Action Figure');
-new Product('../img/dog-duck.jpg', 'Duck Dog Muzzle');
-new Product('../img/dragon.jpg', 'Dragon Meat Can');
-new Product('../img/pen.jpg', 'Pen Cap Eating Utensils');
-new Product('../img/pet-sweep.jpg', 'Pet Sweep Debris Removal System');
-new Product('../img/scissors.jpg', 'Pizza Server Scissors');
-new Product('../img/shark.jpg', 'Shark Sleeping Bag');
-new Product('../img/sweep.png', 'Baby Sweeper Onesie');
-new Product('../img/tauntaun.jpg', 'Tauntaun Sleeping Bag');
-new Product('../img/unicorn.jpg', 'Unicorn Meat');
-new Product('../img/usb.gif', 'Tentacle USB');
-new Product('../img/water-can.jpg', 'Useful Watering Can');
-new Product('../img/wine-glass.jpg', 'Wine Glass');
+new Product('../img/bag.jpg', 'r2d2', 'R2D2 Bag');
+new Product('../img/banana.jpg', 'bananaSlicer', 'Banana Slicer');
+new Product('../img/bathroom.jpg', 'ipadStand', 'Bathroom iPad Stand');
+new Product('../img/boots.jpg', 'rainBoots', 'Rain Boots');
+new Product('../img/breakfast.jpg', 'breakfastCenter', 'All in One Breakfast Center');
+new Product('../img/bubblegum.jpg', 'bubblegum', 'Meatball Bubblegum');
+new Product('../img/chair.jpg', 'awkwardChair', 'Awkward Uncomfortable Chair');
+new Product('../img/cthulhu.jpg', 'cthulhu', 'Cthulhu Action Figure');
+new Product('../img/dog-duck.jpg', 'dogMuzzle', 'Duck Dog Muzzle');
+new Product('../img/dragon.jpg', 'dragonMeat', 'Dragon Meat Can');
+new Product('../img/pen.jpg', 'penCap', 'Pen Cap Eating Utensils');
+new Product('../img/pet-sweep.jpg', 'petSweep', 'Pet Sweep Debris Removal System');
+new Product('../img/scissors.jpg', 'pizzaScissors', 'Pizza Server Scissors');
+new Product('../img/shark.jpg', 'sharkSleepingBag', 'Shark Sleeping Bag');
+new Product('../img/sweep.png', 'babySweeper', 'Baby Sweeper Onesie');
+new Product('../img/tauntaun.jpg', 'tauntaunSleepingBag', 'Tauntaun Sleeping Bag');
+new Product('../img/unicorn.jpg', 'unicornMeat', 'Unicorn Meat');
+new Product('../img/usb.gif', 'tentacle', 'Tentacle USB');
+new Product('../img/water-can.jpg', 'wateringCan', 'Useful Watering Can');
+new Product('../img/wine-glass.jpg', 'wineGlass', 'Wine Glass');
 
 replaceProducts();
