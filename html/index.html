@@ -7,9 +7,10 @@
     <link rel="stylesheet" type="text/css" href="../css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../css/styles.css" />
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 </head>
 <body>
-<header>
+    <header>
         <img src="http://placehold.it/200x70/000" />
         <h1>BusMall</h1>
         <nav>
@@ -29,45 +30,42 @@
             </ul>
         </nav>
     </header>
-
+    
     <main>
-
-      <aside id="vote-result-container">
-          <h3>Results</h3>
-          <ul id="voteResults">
+        
+        <aside id="vote-result-container">
+            <h3>Results</h3>
+            <ul id="voteResults">
           </ul>
-      </aside>
-
-      <section id="click-tracker-container">
-
+        </aside>
+        
+        <section id="click-tracker-container">
+            
       <ul id="allProductsList">
           <li>
               <img id="product1" src="../img/bag.jpg" />
               <!-- <h2 id="product1"></h2> -->
-          </li>
-          <li>
-              <img id="product2" src="../img/banana.jpg" />
-              <!-- <h2 id="product2"></h2> -->
-          </li>
-          <li>
-              <img id="product3" src="../img/bathroom.jpg" />
-              <!-- <h2 id="product3"></h2> -->
-          </li>
-      </ul>
+            </li>
+            <li>
+                <img id="product2" src="../img/banana.jpg" />
+                <!-- <h2 id="product2"></h2> -->
+            </li>
+            <li>
+                <img id="product3" src="../img/bathroom.jpg" />
+                <!-- <h2 id="product3"></h2> -->
+            </li>
+        </ul>
     </section>
-      
-      <button>Vote!</button>
-      <section id="chart-container">
-          <p>Lorem ipsum dolor sit amet, ea dolorem mandamus democritum eam, causae hendrerit urbanitas nam ad. Et albucius apeirian tractatos sed, no civibus erroribus has, cu eros quodsi iisque mei. Te mea graeco mentitum forensibus, ut mel oblique phaedrum, case aeque scriptorem ius ad. Cu mucius timeam copiosae sit, zril volumus ut cum, eu qui appetere nominati mediocritatem. Perpetua disputationi ut his, vel reque appareat antiopam te. Sit ex diceret sanctus dolores.
-              
-              Vel enim placerat an. Per no mundi prompta voluptaria, eos quem dolor at. Dicant accusata posidonium ei has. Cu per blandit definitionem, nihil scriptorem vis ex, sed fierent percipitur no.
-              
-              Cu fabellas adolescens mediocritatem usu, usu integre fabellas repudiare id. Et dicit verear sensibus pro. Ne oratio maluisset mea. Eam te sumo nihil iriure, impedit consetetur ad duo. Tation intellegam an est. Vitae maiorum nam te, et saperet deseruisse mei.</p>
-            </section>
-        </main>
+    
+    <button>Vote!</button>
+    <section id="chart-container">
+        <canvas id="productVoteChart" width="600" height="400"></canvas>
+    </section>
+</main>
 
-    <footer></footer>
+<footer></footer>
 
-    <script src="../js/app.js"></script>
+
+<script src="../js/app.js"></script>
 </body>
 </html>
