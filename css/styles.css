@@ -68,4 +68,5 @@ button {
 #chart-container {
     float: left;
     border: dotted blue 2px;
+    width: 100%;
 }
