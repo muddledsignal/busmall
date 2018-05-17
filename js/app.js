@@ -49,6 +49,7 @@ function updateChartArrays() {
 var data = {
   labels: productNamesArray,
   datasets: [{
+    label: 'votes',
     data: votes,
     backgroundColor: [
       'blue',
@@ -100,7 +101,7 @@ var data = {
 function drawChart() {
   var ctx = document.getElementById('productVoteChart').getContext('2d');
   var voteChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'horizontalBar',
     data: data,
     options: {
       responsive: false,
@@ -129,9 +130,9 @@ function sectionCallBack(event) {
   checkTotalClicks();
   // console.log(event);
   
-  if (event.target.id) {
+  if (event.target.name) {
     totalClicks++;
-    allProducts[event.target.id].timesClicked++;
+    allProducts[event.target.name].timesClicked++;
     
     replaceProducts();
   } else {
@@ -168,17 +169,17 @@ function replaceProducts() {
   cantBeThis.push(product3Index);
   
   imgElement1.src = allProducts[product1Index].src;
-  imgElement1.id = product1Index;
+  imgElement1.name = product1Index;
   
   imgElement2.src = allProducts[product2Index].src;
-  imgElement2.id = product2Index;
+  imgElement2.name = product2Index;
   
   imgElement3.src = allProducts[product3Index].src;
-  imgElement3.id = product3Index;
+  imgElement3.name = product3Index;
 }
 // ======================================================
 
-function renderResults() {
+function renderVotelist() {
   for (var i in allProducts) {
     var liElement = document.createElement('li');
     liElement.textContent = allProducts[i].name + ' clicked: ' + allProducts[i].timesClicked + ' times';
@@ -193,16 +194,36 @@ function tallyVotes(thisProduct) {
 }
 
 
-
 function checkTotalClicks() {
-  if (totalClicks === 6) {
+  if (totalClicks === 25) {
+    renderVotelist();
     tallyVotes();
-    renderResults();
     drawChart();
 
     sectionElement.removeEventListener('click', sectionCallBack);
   }
 }
+
+
+function ifLocalStorage() {
+  if (localStorage.allProducts) {
+    // load data from LS
+    allProducts = JSON.parse(localStorage.getItem('allProducts'));
+    totalClicks = JSON.parse(localStorage.getItem('totalClicks'));
+    console.error('LocalStorage data is available.');
+  
+  } else {
+    // create instances
+    console.log(JSON.stringify(allProducts));
+    localStorage.setItem('allProducts', JSON.stringify(allProducts));
+    localStorage.setItem('totalClicks', JSON.stringify(totalClicks));
+    
+    console.error('No LocalStorage data on file.');
+    
+  }
+};
+
+ifLocalStorage();
 
 // Math to Calculate Random Number - via mdn
 function getRandom() {
