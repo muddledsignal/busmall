@@ -3,70 +3,104 @@ header {
     width: 100%;
     height: 100px;
     padding: 20px;
-    border: solid purple 2px;
+    /* border: solid purple 2px; */
     margin: 0px auto;
 }
 
 header img {
+    font-family: 'Sunflower', sans-serif;
     float: left;
+    height: 75px;
+    /* border: dotted red 3px; */
 }
 
 header h1 {
+    font-family: 'Sunflower', sans-serif;
     float: left;
     font-size: 30px;
-    margin: 20px;
-    border: dotted orange 3px;
+    padding: 20px 0px 0px 20px;;
+    /* border: dotted orange 3px; */
+}
+
+h3 {
+    font-size: 20px;
+    text-align: center;
+    padding: 15px;
 }
 
 nav {
     float: right;
     margin-top: 40px;
-    border: solid yellow 3px;
-    width: 400px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    /* border: solid yellow 3px; */
+    width: 500px;
 }
 
 nav li {
+    background-color: inherit;
+    /* border: 1px solid #ddd; */
     display: inline-block;
     float: left;
     width: 60px;
     margin-left: 20px;
-    border: blue dotted 2px;
+    padding: 14px 16px;
+    /* border: blue dotted 2px; */
+}
+
+main {
+    width: 90%;
+    margin: 0px auto;
 }
 
 aside {
     float: left;
-    width: 300px;
-    margin: 20px;
-    border: dotted green 3px;
+    width: 25%;
+    /* margin: 20px; */
+    border: 1px solid #ddd;
+    padding: 20px;
+    /* border: dotted green 3px; */
 }
 
 body {
+    background-color: #F8F8F8;
     margin: 0px auto;
-    border: dashed red 3px;
+    /* border: dashed red 3px; */
 }
 
 #click-tracker-container {
-    border: solid red 1px;
+    float: left;
+    border: 1px solid #ddd;
+    margin: 30px;
+    /* border: solid red 1px; */
 }
 
 button {
-    float: left;
     width: 300px;
-    margin: 30px auto;
-    margin-left: 500px;
-    border: solid yellow 4px;
+    height: 30px;
+    margin: 30px 30px 30px 300px;
+    /* margin-left: 500px; */
+    /* border: solid yellow 4px; */
 }
 
 #allProductsList li {
     display: inline-block;
+    /* border: 1px solid #ddd; */
+    padding: 30px;
 }
 
 #allProductsList img {
-    width: 300px;
+    max-height: 200px;
+    max-width: 200px;
 }
 
-#chart-container {
+#large-paragraph {
     float: left;
-    border: dotted blue 2px;
-    width: 100%;
+    margin-left: 50px;
+    width: 740px;
+}
+
+footer {
+    float: left;
+    margin-left: 50px;
 }
