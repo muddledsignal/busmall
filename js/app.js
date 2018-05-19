@@ -128,7 +128,9 @@ sectionElement.addEventListener('click', sectionCallBack);
 
 function sectionCallBack(event) {
   checkTotalClicks();
-  // console.log(event);
+  // for (var i = 0; i < totalClicks; i++) {
+  //   console.log(allProducts[i].timesClicked);
+  // };
   
   if (event.target.name) {
     totalClicks++;
@@ -196,7 +198,7 @@ function tallyVotes(thisProduct) {
 
 function checkTotalClicks() {
   if (totalClicks === 25) {
-    renderVotelist();
+    // renderVotelist();
     tallyVotes();
     drawChart();
 
